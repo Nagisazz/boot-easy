@@ -4,7 +4,11 @@ import com.nagisazz.booteasy.base.result.Result;
 import com.nagisazz.booteasy.base.vo.PageParam;
 import com.nagisazz.booteasy.entity.User;
 import com.nagisazz.booteasy.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,5 +43,12 @@ public class UserController {
         user.setPassword("aa");
         userService.insert(user);
         return Result.success();
+    }
+
+    @RequestMapping("/login")
+    public void login(@RequestBody User user) {
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getName(), user.getPassword());
+        subject.login(token);
     }
 }

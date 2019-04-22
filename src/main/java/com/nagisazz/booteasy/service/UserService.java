@@ -22,6 +22,10 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
+    public User findUserByNameAndPassword(User realUser) {
+        return userDao.findByNameAndPassword(realUser.getName(), realUser.getPassword());
+    }
+
     @RedisCache(type = User.class)
     public User findByName(String name) {
         return userDao.findByName(name);

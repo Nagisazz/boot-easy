@@ -19,4 +19,5 @@ public interface UserDao extends BaseDao<Long, User> {
     @Query(operation = Query.Operation.page, namespace = "com.nagisazz.booteasy.entity.User", value = "selectByName")
     Page<User> selectName(@Param("name") String name, Pageable pageRequest);
 
+    User findByNameAndPassword(String name, String password);
 }

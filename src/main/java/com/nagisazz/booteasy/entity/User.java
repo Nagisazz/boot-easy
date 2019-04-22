@@ -30,6 +30,9 @@ public class User implements BaseEntity<Long> {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "perms")
+    private String perms;
+
     @Override
     public Long getId() {
         return id;

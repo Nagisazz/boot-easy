@@ -7,7 +7,8 @@
         SELECT
         `user`.id AS id,
         `user`.name AS name,
-        `user`.password AS password
+        `user`.password AS password,
+        `user`.perms AS perms
         from `user` AS `user`
         <include refid="condition"></include>
         <include refid="pagination"></include>
